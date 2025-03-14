@@ -42,10 +42,14 @@ def make_id():
     timestamp = datetime.now().timestamp()
     return f"CGT-S2P{str(hashlib.md5(str(timestamp).encode()).hexdigest())[:7]}"
 
-@st.dialog("Submitted")
+@st.dialog("🤩 Successful")
 def handle_submission():
-    st.header("🤩 Successful")
-    st.write("Your submission has be recieved")
+    st.text("Great!! 😁 Your submission has be recieved")
+    st.divider()
+    st.write("""
+    😃 See you on the **📆 11th of May**
+    at the **⛪️ Chapel Of The Light** for your audition!!
+    """)
 
 with st.form(key="registration_form"):
     # with st.container(border=True):
@@ -92,13 +96,6 @@ with st.form(key="registration_form"):
             # st.code(uploaded_participate_portrait_url)
             # print(f"Success + {participate_name} submitted response")
             handle_submission()
-    
-        st.divider()
-        st.text("Great!! 😁")
-        st.write("""
-    😃 See you on the **📆 11th of May**
-    at the **⛪️ Chapel Of The Light** for your audition!!
-    """)
 
 
 st.divider()
