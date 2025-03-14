@@ -14,7 +14,7 @@ st.set_page_config(page_title="Registration | CGT'S2", page_icon="assets/favicon
 # Configuration       
 cloudinary.config( 
     cloud_name = "dodxto0d1", 
-    api_key = "252441329872367", 
+    api_key = st.secrets["database"]["api_key"], 
     api_secret = st.secrets["database"]["image_api_secret"],
     secure=True
 )
