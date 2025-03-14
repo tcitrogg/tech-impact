@@ -9,6 +9,7 @@ st-gsheets-connection = "*"
 plotly = "*"
 matplotlib = "*"
 cloudinary = "*"
+pyshorteners = "*"
 
 [dev-packages]
 

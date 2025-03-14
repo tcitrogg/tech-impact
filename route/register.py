@@ -8,6 +8,7 @@ import base64
 import cloudinary
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
+import pyshorteners
 
 st.set_page_config(page_title="Registration | CGT'S2", page_icon="assets/favicon.png")
 
@@ -21,6 +22,8 @@ cloudinary.config(
 SheetConn = st.connection("gsheets", type=GSheetsConnection)
 EXISTINGDATA = SheetConn.read(worksheet="RegistrationResponse", ttl=5)
 
+shortener = pyshorteners.Shortener()
+
 st.image("assets/CGT-TOP-BANNER.png")
 
 st.header("CGT'S2")
@@ -30,7 +33,7 @@ st.write("""
 😃 Would you like to show case your amazing talent?
 Register Now!!!, we anticipate to see you 🤩
 
-- Registration ends by 8th of May
+- Registration ends by **8th of May**
 - Audition will take place on the ⌚️ 11th of May
 See you on 17th of May
 at Chapel Of The Light, Main Campus, Unilorin
@@ -75,7 +78,7 @@ with st.form(key="registration_form"):
             with st.spinner():
                 # Upload an image
                 uploaded_participate_portrait = cloudinary.uploader.upload(participate_portrait.getvalue(), public_id=participate_id)
-                uploaded_participate_portrait_url = uploaded_participate_portrait["secure_url"]
+                uploaded_participate_portrait_url = shortener.isgd.short(uploaded_participate_portrait["secure_url"])
                 NEWDATA = pd.DataFrame([
                             {
                                 "ID": participate_id,
