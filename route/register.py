@@ -34,7 +34,7 @@ st.write("""
 Register Now!!!, we anticipate to see you 🤩
 
 - :red[Registration ends by **26th of April**]
-- :yellow[🖋 Note: **Auditioning is compulsory for all participants.**]
+- 🖋 Note: **Auditioning is compulsory for all participants.**
 """)
 
 def make_id():
