@@ -34,8 +34,7 @@ st.write("""
 Register Now!!!, we anticipate to see you 🤩
 
 - :red[Registration ends by **26th of April**]
-
-🖋 Note: **Auditioning is compulsory for all participants.**
+- :yellow[🖋] Note: :yellow[**Auditioning is compulsory for all participants.**]
 """)
 
 def make_id():
@@ -47,8 +46,8 @@ def handle_submission():
     st.text("Great!! 😁 Your submission has be recieved")
     st.divider()
     st.write("""
-    😃 You will be contacted and communicated about the Audition...
-    at the **⛪️ Chapel Of The Light** for your audition!!
+    😃 You will be contacted and communicated with about the Audition...
+    Stay connected!
     """)
 
 with st.form(key="registration_form"):
