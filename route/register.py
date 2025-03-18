@@ -33,10 +33,7 @@ st.write("""
 😃 Would you like to show case your amazing talent?
 Register Now!!!, we anticipate to see you 🤩
 
-- Registration ends by **8th of May**
-- Audition will take place on the ⌚️ 11th of May
-See you on 17th of May
-at Chapel Of The Light, Main Campus, Unilorin
+- :red[Registration ends by **26th of April**]
 
 🖋 Note: **Auditioning is compulsory for all participants.**
 """)
@@ -50,44 +47,44 @@ def handle_submission():
     st.text("Great!! 😁 Your submission has be recieved")
     st.divider()
     st.write("""
-    😃 See you on the **📆 11th of May**
+    😃 You will be contacted and communicated about the Audition...
     at the **⛪️ Chapel Of The Light** for your audition!!
     """)
 
 with st.form(key="registration_form"):
     # with st.container(border=True):
-    participate_name = st.text_input("Name :red[*]")
+    participant_name = st.text_input("Name :red[*]")
     st.caption("If it is a group? what is the name of your group?")
         # handle = st.text_input("Stage alias")
-    participate_phone_number = st.text_input("📞 Phone number :red[*]")
+    participant_phone_number = st.text_input("📞 Phone number :red[*]")
     st.caption("Preferable WhatsApp number")
 
-    participate_talent = st.text_input("😎 What talent would you be showcasing? :red[*]")
-    participate_reason = st.text_input("😃 Why do you want to participate? :red[*]")
-    is_participate_firsttime = st.radio("😉 Is this your first time showcasing this talent? :red[*]", ["Yes", "No"], index=1)
-    participate_portrait = st.file_uploader("🎴 Portrait of yourself :red[*]")
+    participant_talent = st.text_input("😎 What talent would you be showcasing? :red[*]")
+    participant_reason = st.text_input("😃 Why do you want to participant? :red[*]")
+    is_participant_firsttime = st.radio("😉 Is this your first time showcasing this talent? :red[*]", ["Yes", "No"], index=1)
+    participant_portrait = st.file_uploader("🎴 Portrait of yourself :red[*]")
     st.caption("Your picture or image of your group")
     
     submit_button = st.form_submit_button("Submit")
     if submit_button:
-        if (not participate_name) or (not participate_phone_number) or (not participate_talent) or (not participate_reason) or (not is_participate_firsttime) or (not participate_portrait):
+        if (not participant_name) or (not participant_phone_number) or (not participant_talent) or (not participant_reason) or (not is_participant_firsttime) or (not participant_portrait):
             st.toast(":red[*] Please fill all required fields")
             st.stop()
         else:
-            participate_id = make_id()
+            participant_id = make_id()
             with st.spinner():
                 # Upload an image
-                uploaded_participate_portrait = cloudinary.uploader.upload(participate_portrait.getvalue(), public_id=participate_id)
-                uploaded_participate_portrait_url = shortener.isgd.short(uploaded_participate_portrait["secure_url"])
+                uploaded_participant_portrait = cloudinary.uploader.upload(participant_portrait.getvalue(), public_id=participant_id)
+                uploaded_participant_portrait_url = shortener.isgd.short(uploaded_participant_portrait["secure_url"])
                 NEWDATA = pd.DataFrame([
                             {
-                                "ID": participate_id,
-                                "Name": participate_name,
-                                "Phone number": participate_phone_number,
-                                "Talent": participate_talent,
-                                "Reason": participate_reason,
-                                "First time": is_participate_firsttime,
-                                "Portrait": uploaded_participate_portrait_url,
+                                "ID": participant_id,
+                                "Name": participant_name,
+                                "Phone number": participant_phone_number,
+                                "Talent": participant_talent,
+                                "Reason": participant_reason,
+                                "First time": is_participant_firsttime,
+                                "Portrait": uploaded_participant_portrait_url,
                                 "Timestamp": datetime.now().strftime("%d-%h-%y %H:%M:%S")
                             }
                         ])
@@ -96,8 +93,8 @@ with st.form(key="registration_form"):
             
             # Updated Sheets with updated data
             SheetConn.update(worksheet="RegistrationResponse", data=UPDATED_DATA)
-            # st.code(uploaded_participate_portrait_url)
-            # print(f"Success + {participate_name} submitted response")
+            # st.code(uploaded_participant_portrait_url)
+            # print(f"Success + {participant_name} submitted response")
             handle_submission()
 
 
