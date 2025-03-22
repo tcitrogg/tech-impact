@@ -33,8 +33,8 @@ st.write("""
 😃 Would you like to show case your amazing talent?
 Register Now!!!, we anticipate to see you 🤩
 
-- :red[Registration ends by **26th of April**]
-- 🖋 Note: **Auditioning is compulsory for all participants.**
+- :red[Registration ends by **20th of April**]
+- 🖋 Note: **Auditioning _is compulsory for all participants._ will take place on the 26th of April**
 """)
 
 def make_id():
