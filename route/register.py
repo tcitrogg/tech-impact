@@ -41,13 +41,13 @@ def make_id():
     timestamp = datetime.now().timestamp()
     return f"CGT-S2P{str(hashlib.md5(str(timestamp).encode()).hexdigest())[:7]}"
 
-@st.dialog("🤩 Successful")
+@st.dialog("🤩 Successful!!")
 def handle_submission():
     st.text("Great!! 😁 Your submission has be recieved")
     st.divider()
     st.write("""
-    😃 You will be contacted and communicated with about the Audition...
-    Stay connected!
+    😃 Follow this link the join the WhatsApp group, where you will be informed more about the audition and rehearsal.
+    > *https://chat.whatsapp.com/Bng1rPXEQd0JWRdrK3P6wX*
     """)
 
 with st.form(key="registration_form"):
