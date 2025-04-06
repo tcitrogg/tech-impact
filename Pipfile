@@ -10,6 +10,8 @@ plotly = "*"
 matplotlib = "*"
 cloudinary = "*"
 pyshorteners = "*"
+folium = "*"
+streamlit-folium = "*"
 
 [dev-packages]
 

@@ -1,89 +1,83 @@
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
 import pandas as pd
-from datetime import datetime
-# from random import choice as rd_choice
 import hashlib
-import base64
-import cloudinary
-import cloudinary.uploader
-from cloudinary.utils import cloudinary_url
 import pyshorteners
+# import folium
+# from random import choice as rd_choice
+from streamlit_gsheets import GSheetsConnection
+from datetime import datetime
+# from streamlit_folium import st_folium
 
-st.set_page_config(page_title="Registration | CGT'S2", page_icon="assets/favicon.png")
+st.set_page_config(page_title="Save a seat | Tech Impact 1.0", page_icon="assets/favicon.png")
 
-# Configuration       
-cloudinary.config( 
-    cloud_name = "dodxto0d1", 
-    api_key = st.secrets["database"]["api_key"], 
-    api_secret = st.secrets["database"]["image_api_secret"],
-    secure=True
-)
+# Configuration
 SheetConn = st.connection("gsheets", type=GSheetsConnection)
-EXISTINGDATA = SheetConn.read(worksheet="RegistrationResponse", ttl=5)
+EXISTINGDATA = SheetConn.read(worksheet="Response", ttl=5)
 
 shortener = pyshorteners.Shortener()
 
-st.image("assets/CGT-TOP-BANNER.png")
+st.image("assets/tech-impact-form-banner.png")
 
-st.header("CGT'S2")
+st.header("Tech Impact 1.0")
 
 st.write("""
-### Chapel's Got Talent Season 2
-😃 Would you like to show case your amazing talent?
-Register Now!!!, we anticipate to see you 🤩
+### There is room for everyone in tech.
 
-- :red[Registration ends by **20th of April**]
-- 🖋 Note: **Auditioning _is compulsory for all participants._ will take place on the 26th of April**
+Join us for an exciting evening of tech inspiration, at [Chapel Of The Light, Unilorin](https://maps.app.goo.gl/5cNUJYwaHAq8EmoF9), as we celebrate our youth week. This lively gathering is all about sparking your creativity and empowering you to become solution-oriented in today's fast-paced digital world. Whether you're passionate about AI, intrigued by innovative Design, or curious about Web3, there's something here for everyone.
+
+Come ready to connect, learn, and have fun as we explore how technology can shape our future. Let's celebrate innovation together—see you there!
 """)
 
-def make_id():
-    timestamp = datetime.now().timestamp()
-    return f"CGT-S2P{str(hashlib.md5(str(timestamp).encode()).hexdigest())[:7]}"
+st.markdown("#### 📅 Date: 14th of May")
 
-@st.dialog("🤩 Successful!!")
+st.markdown("#### 📍 Location")
+st.html("""<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.241936509288!2d4.6736017!3d8.4758397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10364b3d082f5acd%3A0xf22cc9c204615c61!2sUnilorin%20Chapel%20of%20the%20Light!5e0!3m2!1sen!2sng!4v1743971143963!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>""")
+# m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
+# folium.Marker(
+#     [39.949610, -75.150282], popup="Chapel Of The Light, Unilorin", tooltip="Chapel Of The Light, Unilorin"
+# ).add_to(m)
+
+
+@st.dialog("🤩 See you on the 14th of May!!")
 def handle_submission():
     st.text("Great!! 😁 Your submission has be recieved")
     st.divider()
-    st.write("""
-    😃 Follow this link the join the WhatsApp group, where you will be informed more about the audition and rehearsal.
-    > *https://chat.whatsapp.com/Bng1rPXEQd0JWRdrK3P6wX*
-    """)
+
+
+def make_id(wing_id: str):
+    timestamp = datetime.now().timestamp()
+    return f"TI-{wing_id}25{str(hashlib.md5(str(timestamp).encode()).hexdigest())[:7]}"
 
 with st.form(key="registration_form"):
-    # with st.container(border=True):
-    participant_name = st.text_input("Name :red[*]")
-    st.caption("If it is a group? what is the name of your group?")
-        # handle = st.text_input("Stage alias")
-    participant_phone_number = st.text_input("📞 Phone number :red[*]")
+    attendee_name = st.text_input("Name :red[*]")
+    attendee_phone_number = st.text_input("📞 Phone number :red[*]")
     st.caption("Preferable WhatsApp number")
 
-    participant_talent = st.text_input("😎 What talent would you be showcasing? :red[*]")
-    participant_reason = st.text_input("😃 Why do you want to participant? :red[*]")
-    is_participant_firsttime = st.radio("😉 Is this your first time showcasing this talent? :red[*]", ["Yes", "No"], index=1)
-    participant_portrait = st.file_uploader("🎴 Portrait of yourself :red[*]")
-    st.caption("Your picture or image of your group")
+    attendee_wing = st.radio("🛠️ What **Solution Wing** would you like to save a seat for? :red[*]", ["AI", "Design", "Web3"])
+    attendee_expectation = st.text_input("😃 What are your expectations for this event?")
     
     submit_button = st.form_submit_button("Submit")
     if submit_button:
-        if (not participant_name) or (not participant_phone_number) or (not participant_talent) or (not participant_reason) or (not is_participant_firsttime) or (not participant_portrait):
+        if (not attendee_name) or (not attendee_phone_number) or (not attendee_wing):
             st.toast(":red[*] Please fill all required fields")
             st.stop()
         else:
-            participant_id = make_id()
+            if attendee_wing == "AI":
+                wing_id = "A"
+            elif attendee_wing == "Design":
+                wing_id = "D"
+            else:
+                wing_id = "W"
+            attendee_id = make_id(wing_id=wing_id)
             with st.spinner():
                 # Upload an image
-                uploaded_participant_portrait = cloudinary.uploader.upload(participant_portrait.getvalue(), public_id=participant_id)
-                uploaded_participant_portrait_url = shortener.isgd.short(uploaded_participant_portrait["secure_url"])
                 NEWDATA = pd.DataFrame([
                             {
-                                "ID": participant_id,
-                                "Name": participant_name,
-                                "Phone number": participant_phone_number,
-                                "Talent": participant_talent,
-                                "Reason": participant_reason,
-                                "First time": is_participant_firsttime,
-                                "Portrait": uploaded_participant_portrait_url,
+                                "ID": attendee_id,
+                                "Name": attendee_name,
+                                "Phone number": attendee_phone_number,
+                                "Wing": attendee_wing,
+                                "Expectation": attendee_expectation,
                                 "Timestamp": datetime.now().strftime("%d-%h-%y %H:%M:%S")
                             }
                         ])
@@ -91,9 +85,7 @@ with st.form(key="registration_form"):
             UPDATED_DATA = pd.concat([EXISTINGDATA, NEWDATA])
             
             # Updated Sheets with updated data
-            SheetConn.update(worksheet="RegistrationResponse", data=UPDATED_DATA)
-            # st.code(uploaded_participant_portrait_url)
-            # print(f"Success + {participant_name} submitted response")
+            SheetConn.update(worksheet="Response", data=UPDATED_DATA)
             handle_submission()
 
 
