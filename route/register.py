@@ -92,5 +92,5 @@ with st.form(key="registration_form"):
 st.divider()
 _, middle, _ = st.columns([0.3, 0.4, 0.15])
 with middle:
-    st.link_button(label="@chapelunilorin", url="https://zaap.bio/Chapelunilorin")
+    st.link_button(label="@chapelunilorin", url="https://bit.ly/chapelunilorin")
     st.image("assets/social_mark.png", width=200)
