@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import hashlib
 import pyshorteners
-# import folium
+import folium
 # from random import choice as rd_choice
 from streamlit_gsheets import GSheetsConnection
 from datetime import datetime
-# from streamlit_folium import st_folium
+from streamlit_folium import st_folium
 
 st.set_page_config(page_title="Save a seat | Tech Impact 1.0", page_icon="assets/favicon.png")
 
@@ -18,7 +18,7 @@ shortener = pyshorteners.Shortener()
 
 st.image("assets/tech-impact-form-banner.png")
 
-st.header("Tech Impact 1.0")
+st.header("☄ Tech Impact 1.0")
 
 st.write("""
 ### There is room for everyone in tech.
@@ -32,10 +32,10 @@ st.markdown("#### 📅 Date: 14th of May")
 
 st.markdown("#### 📍 Location")
 st.html("""<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.241936509288!2d4.6736017!3d8.4758397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10364b3d082f5acd%3A0xf22cc9c204615c61!2sUnilorin%20Chapel%20of%20the%20Light!5e0!3m2!1sen!2sng!4v1743971143963!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>""")
-# m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
-# folium.Marker(
-#     [39.949610, -75.150282], popup="Chapel Of The Light, Unilorin", tooltip="Chapel Of The Light, Unilorin"
-# ).add_to(m)
+m = folium.Map(location=[8.4758397,4.6736017])
+folium.Marker(
+    [8.4758397,4.6736017], popup="Chapel Of The Light, Unilorin", tooltip="Chapel Of The Light, Unilorin"
+).add_to(m)
 
 
 @st.dialog("🤩 See you on the 14th of May!!")
