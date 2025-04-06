@@ -21,7 +21,7 @@ st.image("assets/tech-impact-form-banner.png")
 st.header("☄ Tech Impact 1.0")
 
 st.write("""
-### There is room for everyone in tech.
+### There is a space for everyone in tech.
 
 Join us for an exciting evening of tech inspiration, at [Chapel Of The Light, Unilorin](https://maps.app.goo.gl/5cNUJYwaHAq8EmoF9), as we celebrate our youth week. This lively gathering is all about sparking your creativity and empowering you to become solution-oriented in today's fast-paced digital world. Whether you're passionate about AI, intrigued by innovative Design, or curious about Web3, there's something here for everyone.
 
