@@ -18,12 +18,12 @@ shortener = pyshorteners.Shortener()
 
 st.image("assets/tech-impact-form-banner.png")
 
-st.header("☄ Tech Impact 1.0")
+st.header("Tech Impact 1.0")
 
 st.write("""
 ### There is a space for everyone in tech.
 
-Join us for an exciting evening of tech inspiration, at [Chapel Of The Light, Unilorin](https://maps.app.goo.gl/5cNUJYwaHAq8EmoF9), as we celebrate our youth week. This lively gathering is all about sparking your creativity and empowering you to become solution-oriented in today's fast-paced digital world. Whether you're passionate about AI, intrigued by innovative Design, or curious about Web3, there's something here for everyone.
+Join us for an exciting evening of tech inspiration, at [Chapel Of The Light, Unilorin](https:/bit.ly/chapelunilorin), as we celebrate our youth week. This lively gathering is all about sparking your creativity and empowering you to become solution-oriented in today's fast-paced digital world. Whether you're passionate about AI, intrigued by innovative Design, or curious about Web3, there's something here for everyone.
 
 Come ready to connect, learn, and have fun as we explore how technology can shape our future. Let's celebrate innovation together—see you there!
 """)
@@ -31,7 +31,8 @@ Come ready to connect, learn, and have fun as we explore how technology can shap
 st.markdown("#### 📅 Date: 14th of May")
 
 st.markdown("#### 📍 Location")
-st.html("""<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.241936509288!2d4.6736017!3d8.4758397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10364b3d082f5acd%3A0xf22cc9c204615c61!2sUnilorin%20Chapel%20of%20the%20Light!5e0!3m2!1sen!2sng!4v1743971143963!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>""")
+st.write("[Google Maps](https://maps.app.goo.gl/5cNUJYwaHAq8EmoF9)")
+# st.html("""<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.241936509288!2d4.6736017!3d8.4758397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10364b3d082f5acd%3A0xf22cc9c204615c61!2sUnilorin%20Chapel%20of%20the%20Light!5e0!3m2!1sen!2sng!4v1743971143963!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>""")
 m = folium.Map(location=[8.4758397,4.6736017], zoom_start=16)
 folium.Marker(
     [8.4758397,4.6736017], popup="Chapel Of The Light, Unilorin", tooltip="Chapel Of The Light, Unilorin"
